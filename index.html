@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Results</title>
+    <style>
+        *,
+        *::after,
+        *::before {
+            padding: 0;
+            margin: 0;
+            box-sizing: inherit;
+        }
+
+
+
+        body {
+            box-sizing: border-box;
+            background: linear-gradient(180deg, #020305 93.97%, rgba(2, 3, 5, 0.00) 100%);
+            background-size: cover;
+        }
+
+
+        main {
+            display: flex;
+            flex-direction: column;
+            justify-items: flex-start;
+            padding-left: 156px;
+        }
+
+        h1 {
+            background-image: url('https://s3-alpha-sig.figma.com/img/ccf1/6bb2/5bbe6c647b44c1401c1d3863ae9d170b?Expires=1717372800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NoqIYkBLC-r8L-VLsgDlaoB6Xb8f0spBD6Ga87KORy~taoVZs7rxTvFqkQKge8poxF6h0x7N6TNuxFHJXKBBsFynUFed4ztTY4VpuQOFuNAYRgj2hALin1ZhNIaa8WXSwyhwprHEfP53cSILPRB5h4Kw~hSZfgCr4FcCX1z9bBa6iwfmgsUxcZb1MnqspTo4r7hnApgMjFwxbanTobmwTVMeSPlM5ekAr9LUMOGjtHjUwpvsYc4CzNgleZ3mL9pEoLRtKtJ68Jok9XjwNTSCyS5afaWnJOgTmYO7KAK~LgnQxDWij086BEQo3jKdygtoHUGNQSimWaYJzQpjDqyedg__');
+
+            background-position: 61% 50%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-align: center;
+            font-size: 96px;
+            font-style: normal;
+            font-weight: 700;
+            font-family: "SF UI Text", Roboto, sans-serif;
+        }
+
+        h2 {
+            color: #FFF;
+            font-family: Times;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 40px;
+            letter-spacing: 8px;
+            margin-top: 180px;
+            margin-bottom: 40px;
+        }
+
+        .title-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-right: 40px;
+            margin-bottom: 120px;
+        }
+
+        .results-button {
+            padding: 19px 20px 18px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            background-color: transparent;
+
+            color: white;
+            font-family: Lato;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            letter-spacing: 2.005px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            border: 1px solid #D85172;
+            cursor: pointer;
+            transition: background 300ms ease;
+        }
+
+        .results-button:hover {
+            background: radial-gradient(circle, black, #D85172);
+        }
+
+        .slider-container {
+            width: 80%;
+            overflow: hidden;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+
+        .slide {
+            flex: 0 0 auto;
+            width: 100%;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            margin-right: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+
+
+        }
+
+        .slide-title {
+            color: #14192D;
+            font-family: Times;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 40px;
+            /* 250% */
+            letter-spacing: 8px;
+        }
+
+        .slide-text {
+            color: #000;
+            font-family: Lato;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 40px;
+            margin-bottom: 60px;
+
+        }
+
+        .result {
+            color: #14192D;
+            font-family: Times;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 40px;
+            /* 250% */
+            letter-spacing: 8px;
+        }
+
+        .amount {
+            color: #D85172;
+            font-family: "SF UI Text", Roboto, sans-serif;
+            font-size: 64px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 96px;
+            /* 150% */
+        }
+
+        .ending {
+            color: #000;
+            font-family: Lato;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 40px;
+            /* 222.222% */
+        }
+
+        .button-wrapper {
+            display: flex;
+            gap: 20px;
+        }
+
+        .arrows {
+            margin-top: 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: transparent;
+            transition: background-color 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 25px;
+        }
+
+        .imgDiv {
+            height: 968px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%),
+                url('https://s3-alpha-sig.figma.com/img/88af/0621/dd2ec0f4275c29ff7b14efb80584b225?Expires=1717372800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=AJZMgLj7PUdMKIkDLhRNESqDCt~PLJzB9jERcQqXmjtbXUDHJ-yPlY40Uc9KPvUtLynUbeWXBpsgK~-amXcxU1zX2enj7UYlH9Bj8tMK~ZwRz1ENY3b2AF-WYp7qPczJoyIf19Dm016LbIXlqUn0cf6ZXeppOdmeJ9YbWDtrqtTIlsUJTvCONIr9iI5ExdPYP6yvlYftKsbVLQuvO~RjoKfWf5FzN-Aani-ooNj5xJhEWu8fwd3jemO3Y2meCTcxY2xbfp~3iaxGhGfFNo0DWQUiRbg-xb2Xi7R110vgtW1-odkZH8YdPfTdaWOn9t0SBX6qqmx~HOlRFuvgM~IzPw__');
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+
+        @media (min-width: 600px) and (max-width: 1100px) {
+
+            main {
+                justify-items: flex-start;
+                padding-left: 60px;
+            }
+
+            h1 {
+                text-align: start;
+                font-size: 96px;
+            }
+
+            h2 {
+                margin-top: 120px;
+            }
+
+            .title-wrapper {
+                align-self: flex-start;
+                display: flex;
+                flex-direction: column;
+
+                margin-right: 0px;
+                margin-bottom: 120px;
+            }
+
+            .results-button {
+                background-color: transparent;
+                align-self: flex-start;
+                margin-top: 60px;
+            }
+
+            .slide-text {
+                line-height: 40px;
+                margin-bottom: 40px;
+            }
+
+            
+
+
+            .imgDiv {
+                height: 744px;
+            }
+        }
+
+        @media (min-width: 200px) and (max-width: 600px) {
+
+            main {
+                justify-items: flex-start;
+                padding-left: 30px;
+            }
+
+            h1 {
+                text-align: start;
+                font-size: 56px;
+            }
+
+            h2 {
+                font-size: 12px;
+                margin-top: 60px;
+                margin-bottom: 40px;
+            }
+
+            .title-wrapper {
+                align-self: flex-start;
+                display: flex;
+                flex-direction: column;
+
+                margin-right: 0px;
+                margin-bottom: 120px;
+            }
+
+            .results-button {
+                background-color: transparent;
+                align-self: flex-start;
+                margin-top: 60px;
+            }
+
+            .slide-title {
+                font-size: 14px;
+                line-height: 24px;
+            }
+
+            .slide-text {
+                line-height: 40px;
+                font-size: 16px;
+                margin-bottom: 40px;
+            }
+
+            .result {
+            font-size: 14px;
+        }
+
+        .amount {
+            font-size: 32px;
+            line-height: 40px;
+            /* 150% */
+        }
+
+            .imgDiv {
+                height: 259px;
+            }
+        }
+    </style>
+</head>
+
+
+
+
+
+
+
+<body>
+
+
+    <main>
+        <h2>Case Results</h2>
+        <div class="title-wrapper">
+            <h1>We get Results</h1> <button class="results-button">See All results</button>
+        </div>
+        <div class="slider-container">
+            <div class="slider">
+                <div class="slide">
+                    <h3 class="slide-title">PERSONAL INJURY CASE</h3>
+                    <p class="slide-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet,
+                        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing .
+                    </p>
+                    <h4 class="result">RESULT</h4>
+                    <p class="amount">$10 Million</p>
+                    <p class="ending">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+                </div>
+                <div class="slide">
+                    <h3 class="slide-title">PERSONAL INJURY CASE</h3>
+                    <p class="slide-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet,
+                        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing .
+                    </p>
+                    <h4 class="result">RESULT</h4>
+                    <p class="amount">$20 Million</p>
+                    <p class="ending">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+                </div>
+                <div class="slide">
+                    <h3 class="slide-title">PERSONAL INJURY CASE</h3>
+                    <p class="slide-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet,
+                        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing .
+                    </p>
+                    <h4 class="result">RESULT</h4>
+                    <p class="amount">$30 Million</p>
+                    <p class="ending">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+                </div>
+                <!-- Add more slides here as needed -->
+            </div>
+        </div>
+
+        <div class="button-wrapper">
+            <button id="prevBtn" class="arrows">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="18" viewBox="0 0 22 18" fill="none">
+                    <path d="M22 9H2" stroke="#D85172" stroke-width="2" />
+                    <path d="M9 2L2 9L9 16" stroke="#D85172" stroke-width="2" stroke-linecap="square" />
+                </svg>
+            </button>
+            <button id="nextBtn" class="arrows">
+                <svg id="prevBtn" xmlns="http://www.w3.org/2000/svg" width="22" height="18" viewBox="0 0 22 18"
+                    fill="none">
+                    <path d="M0 9H20" stroke="#D85172" stroke-width="2" />
+                    <path d="M13 2L20 9L13 16" stroke="#D85172" stroke-width="2" stroke-linecap="square" />
+                </svg>
+            </button>
+        </div>
+    </main>
+    <div class="imgDiv"></div>
+
+
+
+
+
+
+
+
+    <script>
+        const slider = document.querySelector('.slider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideWidth = slider.clientWidth;
+        let currentIndex = 0;
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex++;
+            if (currentIndex >= slider.children.length) {
+                currentIndex = slider.children.length - 1;
+            }
+            updateSliderPosition();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex--;
+            if (currentIndex < 0) {
+                currentIndex = 0;
+            }
+            updateSliderPosition();
+        });
+
+        function updateSliderPosition() {
+            const newPosition = -currentIndex * slideWidth;
+            slider.style.transform = `translateX(${newPosition}px)`;
+        }
+    </script>
+</body>
+
+</html>
